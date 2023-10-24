@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 // Is the given array a valid permutation?
 // This means that every number in [0,count-1] appears exactly once.
 bool isPermutation(int* perm, int count);
