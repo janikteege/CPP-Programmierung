@@ -140,8 +140,8 @@ int main(int, char**)
         std::cin >> inputNumber;
         if (std::cin.fail()) {
             std::cin.clear(); // unset fail-bit
-            std::cin.ignore(max_size, '\n'); // skip bad input
-            // std::cin.ignore(max_size, ' '); // skip bad input
+            // std::cin.ignore(max_size, '\n'); // skip bad input
+            std::cin.ignore(max_size, ' '); // skip bad input
             break;
         }
         count++;
@@ -155,8 +155,8 @@ int main(int, char**)
         std::cin >> inputNumber;
         if (std::cin.fail()) {
             std::cin.clear(); // unset fail-bit
-            std::cin.ignore(max_size, '\n'); // skip bad input
-            // std::cin.ignore(max_size, ' '); // skip bad input
+            //std::cin.ignore(max_size, '\n'); // skip bad input
+            std::cin.ignore(max_size, ' '); // skip bad input
             break;
         }
         permutation->pushBack(inputNumber);

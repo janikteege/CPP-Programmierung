@@ -2,50 +2,41 @@
 #include <iostream>
 
 
-bool isPermutation(const int* perm, int count)
-{   
-    // TODO: nicht kopieren
+bool isPermutation(int* perm, int count)
+{
     // for 1-n , dann lineare suche
-    int* isPresent = new int[count];
-    for (int i = 0; i < count; i++)
-    {
-        isPresent[i] = 0;
-    }
-    
-    for (int i = 0; i < count; i++)
-    {
-        isPresent[perm[i]]++;
-    }
-    for (int i = 0; i < count; i++) {
-        if (isPresent[i] != 1) {
-            delete[] isPresent;
+    for (int i = 0; i < count; ++i) {
+        bool found = false;
+        for (int j = 0; j < count; ++j) {
+            if (perm[j] == i) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
             return false;
         }
     }
-    delete[] isPresent;
     return true;
 }
 
-bool isSorted(const double* data, int dataCount, const int* perm)
+bool isSorted(double* data, int dataCount, int* perm)
 {
-    // TODO: nicht kopieren
-    // not allowed to copy array.
-    auto* maybeSorted = new double[dataCount];
-    for (int i = 0; i < dataCount; i++)
-    {
-        maybeSorted[i] = 0.0;
-    }
-    
-    for (int i = 0; i < dataCount; i++) {
-        maybeSorted[perm[i]] = data[i];
-    }
-    for (int i = 1; i < dataCount; i++)
-    {
-        if (maybeSorted[i-1] > maybeSorted[i]) {
-            delete[] maybeSorted;
+    // for 1-n , dann lineare suche
+    for (int i = 1; i < dataCount; ++i) {
+        int lesser = 0;
+        int bigger = 0;
+        for (int j = 0; j < dataCount; ++j) {
+            if (perm[j] == i) {
+                bigger = data[j];
+            }
+            if (perm[j] == i-1) {
+                lesser = data[j];
+            }
+        }
+        if (lesser>bigger) {
             return false;
         }
     }
-    delete[] maybeSorted;
     return true;
 }
