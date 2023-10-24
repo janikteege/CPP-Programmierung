@@ -4,8 +4,12 @@
 # VSCode
 .vscode/
 
+# Clion
+.idea/
+
 # CPP Builds
 build/
+cmake-build-debug/
 *.dSYM/
 
 # Prerequisites

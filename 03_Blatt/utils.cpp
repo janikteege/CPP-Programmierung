@@ -2,9 +2,10 @@
 #include <iostream>
 
 
-bool isPermutation(int* perm, int count)
+bool isPermutation(const int* perm, int count)
 {   
     // TODO: nicht kopieren
+    // for 1-n , dann lineare suche
     int* isPresent = new int[count];
     for (int i = 0; i < count; i++)
     {
@@ -25,11 +26,11 @@ bool isPermutation(int* perm, int count)
     return true;
 }
 
-bool isSorted(double* data, int dataCount, int* perm)
+bool isSorted(const double* data, int dataCount, const int* perm)
 {
     // TODO: nicht kopieren
     // not allowed to copy array.
-    double* maybeSorted = new double[dataCount];
+    auto* maybeSorted = new double[dataCount];
     for (int i = 0; i < dataCount; i++)
     {
         maybeSorted[i] = 0.0;

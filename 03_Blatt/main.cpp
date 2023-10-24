@@ -11,8 +11,8 @@ template <typename T>
 class ArrayList {
 private:
     T* array;
-    int size;
-    int capacity;
+    int size{};
+    int capacity{};
 
     void reserve(int newSize) {
         if (newSize > this->capacity) {
@@ -130,8 +130,8 @@ private:
  */
 int main(int, char**) 
 {
-    ArrayList<double>* list = new ArrayList<double>();
-    ArrayList<int>* permutation = new ArrayList<int>();
+    auto* list = new ArrayList<double>();
+    auto* permutation = new ArrayList<int>();
     int count = 0;
     std::cout << "Gib deine Zahlen ein: \n";
     while(true) {
@@ -139,8 +139,9 @@ int main(int, char**)
 
         std::cin >> inputNumber;
         if (std::cin.fail()) {
-            std::cin.clear(); // unset failbit
-            std::cin.ignore(max_size, ' '); // skip bad input
+            std::cin.clear(); // unset fail-bit
+            std::cin.ignore(max_size, '\n'); // skip bad input
+            // std::cin.ignore(max_size, ' '); // skip bad input
             break;
         }
         count++;
@@ -153,8 +154,9 @@ int main(int, char**)
         int inputNumber = 0;
         std::cin >> inputNumber;
         if (std::cin.fail()) {
-            std::cin.clear(); // unset failbit
-            std::cin.ignore(max_size, ' '); // skip bad input
+            std::cin.clear(); // unset fail-bit
+            std::cin.ignore(max_size, '\n'); // skip bad input
+            // std::cin.ignore(max_size, ' '); // skip bad input
             break;
         }
         permutation->pushBack(inputNumber);
