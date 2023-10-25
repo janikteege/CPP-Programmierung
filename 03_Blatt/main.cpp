@@ -1,12 +1,12 @@
 #include "utils.hpp"
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <limits>
 
 constexpr auto max_size = std::numeric_limits<std::streamsize>::max();
 
+// probably should go into utils.hpp
 template <typename T>
 class ArrayList {
 private:
@@ -14,16 +14,17 @@ private:
     int size{};
     int capacity{};
 
+    // increase capacity of underlying array to new size
     void reserve(int newSize) {
         if (newSize > this->capacity) {
             T* newArray = new T[newSize];
-            // Copy content
+            // copy content to new array
             for (int i = 0; i < this->size; i++) {
                 newArray[i] = this->array[i];
             }
-            // delete memory at our pointer because after the next line 
-            // it becomes unreachable
-            delete[] this->array; 
+            // delete memory at our pointer,
+            // because after the next line it becomes unreachable
+            delete[] this->array;
             this->array = newArray;
             this->capacity = newSize;
         }
@@ -42,14 +43,7 @@ private:
             this->size = 0;
         }
         T* getArray() {
-            // TODO: maybe return a copy
             return this->array;
-        }
-        int getSize() {
-            return this->size;
-        }
-        int getCapacity() {
-            return this->capacity;
         }
         void pushBack(T element) {
             if (this->size >= this->capacity) {
@@ -91,6 +85,7 @@ private:
             this->array[index] = element;
             this->size++;
         }
+        // display info of ArrayList
         void print(){
             std::cout << "Array at " << this->array << "\n";
             std::cout << "Capacity " << this->capacity << "\n";
@@ -118,7 +113,7 @@ private:
 };
 
 
-/* todo:
+/* done:
  *      * read doubles from cin and put them into an array until something that
  *        is not a number is entered. (std::cin.fail() is true)
  *      * increase the array's size if necessary
@@ -130,8 +125,8 @@ private:
  */
 int main(int, char**) 
 {
-    auto* list = new ArrayList<double>();
-    auto* permutation = new ArrayList<int>();
+    auto* list = new ArrayList<double>(); // muss wahrscheinlich nicht auf den heap
+    auto* permutation = new ArrayList<int>(); // muss wahrscheinlich nicht auf den heap
     int count = 0;
     std::cout << "Gib deine Zahlen ein: \n";
     while(true) {
@@ -140,8 +135,8 @@ int main(int, char**)
         std::cin >> inputNumber;
         if (std::cin.fail()) {
             std::cin.clear(); // unset fail-bit
-            // std::cin.ignore(max_size, '\n'); // skip bad input
-            std::cin.ignore(max_size, ' '); // skip bad input
+            // std::cin.ignore(max_size, '\n'); // skip bad input for manual input
+            std::cin.ignore(max_size, ' '); // skip bad input for testing input
             break;
         }
         count++;
@@ -155,8 +150,8 @@ int main(int, char**)
         std::cin >> inputNumber;
         if (std::cin.fail()) {
             std::cin.clear(); // unset fail-bit
-            //std::cin.ignore(max_size, '\n'); // skip bad input
-            std::cin.ignore(max_size, ' '); // skip bad input
+            //std::cin.ignore(max_size, '\n'); // skip bad input for manual input
+            std::cin.ignore(max_size, ' '); // skip bad input for testing input
             break;
         }
         permutation->pushBack(inputNumber);
