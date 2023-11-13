@@ -1,5 +1,6 @@
 #include "scopetimer.hpp"
 
+// Constructor
 ScopeTimer::ScopeTimer(const char* name) {
     this->name = name;
     // Indentation for every "outer" timer
@@ -13,6 +14,7 @@ ScopeTimer::ScopeTimer(const char* name) {
 
 }
 
+// Destructor
 ScopeTimer::~ScopeTimer() {
     this->nActiveTimers--;
     std::clock_t clockEnd = std::clock();
